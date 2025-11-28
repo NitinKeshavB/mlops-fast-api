@@ -1,4 +1,4 @@
-# mlops-fast-api
+# mlops-fast-api project
 
 ## Quick start
 
