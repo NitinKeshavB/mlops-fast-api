@@ -7,7 +7,7 @@ name = "mlops-fast-api"
 description = "This package contains a FastAPI template for databricks projects"
 authors = [{ name = "Nitin keshav", email = "nitin.keshav11@gmail.com" }]
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 license = { text = "MIT" }
 dependencies = []
 classifiers = ["Programming Language :: Python :: 3"]
@@ -34,7 +34,7 @@ static-code-qa = [
     "Flake8-pyproject",
     "radon",
 ]
-# Installing dev depenendencies in your virtual env makes it so that during development VS Code can 
+# Installing dev depenendencies in your virtual env makes it so that during development VS Code can
 # - surface linting errors
 # - automatically apply formatting
 # - show enhanced autocompletion for stubs libraries
