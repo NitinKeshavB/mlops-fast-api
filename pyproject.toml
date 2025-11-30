@@ -9,7 +9,7 @@ authors = [{ name = "Nitin keshav", email = "nitin.keshav11@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
-dependencies = []
+dependencies = ["boto3"]
 classifiers = ["Programming Language :: Python :: 3"]
 keywords = ["one", "two"]
 
@@ -22,7 +22,9 @@ version = { file = "version.txt" }
 
 # optional dependencies can be installed with square brackets, e.g. `pip install my-package[test,static-code-qa]`
 [project.optional-dependencies]
-test = ["pytest", "pytest-cov"]
+stubbs = ["boto3-stubs[s3]"]
+jupyter = ["jupyterlab", "ipykernel", "rich"]
+test = ["pytest", "pytest-cov", "moto[s3]"]
 release = ["build", "twine"]
 static-code-qa = [
     "pre-commit",
@@ -39,7 +41,7 @@ static-code-qa = [
 # - automatically apply formatting
 # - show enhanced autocompletion for stubs libraries
 # See .vscode/settings.json to see how VS Code is configured to use these tools
-dev = ["mlops-fast-api[test,release,static-code-qa]"]
+dev = ["mlops-fast-api[test,release,static-code-qa,stubbs,jupyter]"]
 
 [build-system]
 # Minimum requirements for the build system to execute.
@@ -71,7 +73,7 @@ exclude = '''
 [tool.flake8]
 docstring-convention = "all"
 ignore = ["D107", "D212", "E501", "W503", "W605", "D203", "D100"]
-exclude = ["venv"]
+exclude = ["venv", "src/files_api/s3.py"]
 max-line-length = 119
 
 # radon
@@ -92,4 +94,11 @@ disable = [
     "import-error",
     "too-few-public-methods",
     "redefined-outer-name",
+    "unnecessary-ellipsis",
 ]
+
+[tool.pylint.master]
+ignore-patterns = ["s3\\.py$"]
+
+[tool.mypy]
+exclude = ["src/files_api/s3\\.py$"]
