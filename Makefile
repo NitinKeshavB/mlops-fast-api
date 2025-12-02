@@ -10,8 +10,23 @@ build:
 clean:
 	bash run.sh clean
 
+run-file:
+	bash run.sh run
+
+run-mock:
+	bash run.sh run-mock
+
+run-py:
+	bash run.sh run-py
+
 help:
 	bash run.sh help
+
+install-generated-sdk:
+	bash run.sh install-generated-sdk
+
+generate-client-library:
+	bash run.sh generate-client-library
 
 install:
 	bash run.sh install

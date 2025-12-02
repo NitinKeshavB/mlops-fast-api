@@ -9,7 +9,7 @@ authors = [{ name = "Nitin keshav", email = "nitin.keshav11@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
-dependencies = ["boto3"]
+dependencies = ["boto3", "fastapi", "uvicorn", "pydantic", "pydantic_settings"]
 classifiers = ["Programming Language :: Python :: 3"]
 keywords = ["one", "two"]
 
@@ -23,6 +23,7 @@ version = { file = "version.txt" }
 # optional dependencies can be installed with square brackets, e.g. `pip install my-package[test,static-code-qa]`
 [project.optional-dependencies]
 stubbs = ["boto3-stubs[s3]"]
+api = ["fastapi", "uvicorn", "pydantic", "python-multipart"]
 jupyter = ["jupyterlab", "ipykernel", "rich"]
 test = ["pytest", "pytest-cov", "moto[s3]"]
 release = ["build", "twine"]
@@ -41,7 +42,7 @@ static-code-qa = [
 # - automatically apply formatting
 # - show enhanced autocompletion for stubs libraries
 # See .vscode/settings.json to see how VS Code is configured to use these tools
-dev = ["mlops-fast-api[test,release,static-code-qa,stubbs,jupyter]"]
+dev = ["mlops-fast-api[test,release,static-code-qa,stubbs,jupyter,api]"]
 
 [build-system]
 # Minimum requirements for the build system to execute.
@@ -72,7 +73,22 @@ exclude = '''
 
 [tool.flake8]
 docstring-convention = "all"
-ignore = ["D107", "D212", "E501", "W503", "W605", "D203", "D100"]
+ignore = [
+    "D107",
+    "D212",
+    "E501",
+    "W503",
+    "W605",
+    "D203",
+    "D100",
+    "D103",
+    "D101",
+    "D102",
+    "D105",
+    "D202",
+    "D209",
+    "D213",
+]
 exclude = ["venv", "src/files_api/s3.py"]
 max-line-length = 119
 
@@ -90,11 +106,14 @@ disable = [
     "line-too-long",
     "trailing-whitespace",
     "missing-function-docstring",
+    "missing-module-docstring",
+    "missing-class-docstring",
     "consider-using-f-string",
     "import-error",
     "too-few-public-methods",
     "redefined-outer-name",
     "unnecessary-ellipsis",
+    "unused-argument",
 ]
 
 [tool.pylint.master]
